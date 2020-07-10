@@ -86,7 +86,7 @@ void Rapbit32(){
   
 }
 int Knob_sensor(){
-  return analogRead(32);
+  return analogRead(36);
 }
 void beep(){
   int _buzzer = 4;
@@ -157,7 +157,7 @@ void Rapbit32_setBrightness(uint8_t num){
   pixels.show();
 }
 void Rapbit32_setColor(int R,int G,int B){
-  for(int i = 0;i<4;i++){
+  for(int i = 0;i<5;i++){
     pixels.setPixelColor(i, pixels.Color(R, G, B));
   }
   pixels.show();

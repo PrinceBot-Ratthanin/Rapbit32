@@ -196,6 +196,8 @@ module.exports = {
                 },
                 'i2c128x64_display_clear',
                 'i2c128x64_display_display',
+                'basic_string', 
+                'text_join',
                 {
                     xml : `<block type="variables_set">
                                 <field name="VAR">img1</field>
@@ -373,7 +375,7 @@ module.exports = {
             color : '200',
             icon : '/static/icons/icons8_thermometer_96px.png',
             blocks : [
-                'sw_OK_press',
+                'sw1_press',
                 'LED_status',
                 {
                     xml : 

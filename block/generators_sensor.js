@@ -1,16 +1,16 @@
 module.exports = function(Blockly){
   'use strict';
-Blockly.JavaScript['sw_OK_press'] = function(block) {  
+Blockly.JavaScript['sw1_press'] = function(block) {  
   var code = 'wait();\n';
   return code;
 };
 Blockly.JavaScript['button_1_status'] = function(block) {  
-  var code = '(digitalRead(15))';  
+  var code = '(digitalRead(23))';  
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript['Knob_status'] = function(block) {  
-  var code = '(_Knob())';
+  var code = '(Knob_sensor())';
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 Blockly.JavaScript['Irremote_sensor'] = function(block) {  

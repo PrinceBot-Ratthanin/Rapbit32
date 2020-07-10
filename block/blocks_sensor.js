@@ -2,10 +2,10 @@ const dirIcon = Vue.prototype.$global.board.board_info.dir;
 module.exports = function(Blockly){
   'use strict';
 
-Blockly.Blocks['sw_OK_press'] = {
+Blockly.Blocks['sw1_press'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("SW_OK_press");
+        .appendField("SW1_press");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(65);
@@ -17,7 +17,7 @@ Blockly.Blocks['button_1_status'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage("/static/icons/sw12x12.png", 20, 20, "*"))
-        .appendField("SW_OK is pressed");
+        .appendField("SW1 is pressed");
     this.setInputsInline(true);
     this.setOutput(true, "Number");
     this.setColour(90);
