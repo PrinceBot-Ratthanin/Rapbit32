@@ -6,7 +6,7 @@ module.exports = {
   author: "Ratthanin Kittisriphong",
   website: "https://PrinceBot.net",
   email: "print081@gmail.com",
-  git: "https://github.com/PrinceBot-Ratthanin/Rapbit32/",
+  git: "https://github.com/PrinceBot-Ratthanin/Rapbit32",
   image: "/static/Rapbit32.png",
-  version: "0.1.0",
+  version: "1.0.0",
 };
