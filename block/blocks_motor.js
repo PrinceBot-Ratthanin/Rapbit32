@@ -125,7 +125,7 @@ Blockly.Blocks['Rapbit32_motor_backward2'] = {
     this.setTooltip("");
   }
 };
-Blockly.Blocks['Rapbit32_motor_spin'] = {
+Blockly.Blocks['Rapbit32_motor_turn'] = {
   init: function() {
     this.appendDummyInput()
       .appendField("Motor Turn :")
@@ -142,7 +142,7 @@ Blockly.Blocks['Rapbit32_motor_spin'] = {
     this.setTooltip("");
   }
 };
-Blockly.Blocks['Rapbit32_motor_turn'] = {
+Blockly.Blocks['Rapbit32_motor_spin'] = {
   init: function() {
     this.appendDummyInput()
       .appendField("Motor Spin :")
@@ -250,6 +250,41 @@ Blockly.Blocks['Run_following_of_line'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(330);
+    this.setTooltip("");
+  }
+};
+Blockly.Blocks['Readline_PID'] = {
+  init: function() {
+    this.appendDummyInput()
+        //.appendField(new Blockly.FieldImage("/static/icons/bmx055.png", 20, 20, "*"))
+        .appendField("Read_Line");
+    this.setInputsInline(true);
+    this.setOutput(true, "Number");
+    this.setColour(90);
+ this.setTooltip("Read_Line");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Blocks['Rapbit32_Run_PID'] = {
+  init: function() {
+    this.appendValueInput("speed_motor")
+      .setCheck("Number")
+      .appendField("PID Motor at speed");
+    this.appendDummyInput()
+      .appendField("%");
+    this.appendValueInput("kp")
+      .setCheck("Number")
+      .appendField("KP:");
+    this.appendValueInput("ki")
+      .setCheck("Number")
+      .appendField("KI:");
+    this.appendValueInput("kd")
+      .setCheck("Number")
+      .appendField("KD:");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(180);
     this.setTooltip("");
   }
 };

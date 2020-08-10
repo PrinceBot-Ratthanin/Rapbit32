@@ -74,47 +74,6 @@ module.exports = {
                         </value>
                     </block>`
                 },
-                /*{
-                    xml : 
-                    `<block type="Rapbit32_motor_spin_left">
-                        <value name="speed">
-                            <shadow type="math_number">
-                                <field name="NUM">50</field>
-                            </shadow>
-                        </value>
-                    </block>`
-                },
-                {
-                    xml : 
-                    `<block type="Rapbit32_motor_spin_right">
-                        <value name="speed">
-                            <shadow type="math_number">
-                                <field name="NUM">50</field>
-                            </shadow>
-                        </value>
-                    </block>`
-                },*/
-                
-                /*{
-                    xml : 
-                    `<block type="Rapbit32_motor_turn_left">
-                        <value name="speed">
-                            <shadow type="math_number">
-                                <field name="NUM">50</field>
-                            </shadow>
-                        </value>
-                    </block>`
-                },
-                {
-                    xml : 
-                    `<block type="Rapbit32_motor_turn_right">
-                        <value name="speed">
-                            <shadow type="math_number">
-                                <field name="NUM">50</field>
-                            </shadow>
-                        </value>
-                    </block>`
-                },*/
                 { 
                     xml : 
                     `<block type="Rapbit32_motor">
@@ -161,6 +120,32 @@ module.exports = {
                         <value name="speed2">
                             <shadow type="math_number">
                                 <field name="NUM">50</field>
+                            </shadow>
+                        </value>
+                    </block>`
+                },
+                'Readline_PID',
+                { 
+                    xml : 
+                    `<block type="Rapbit32_Run_PID">
+                        <value name="speed_motor">
+                            <shadow type="math_number">
+                                <field name="NUM">50</field>
+                            </shadow>
+                        </value>
+                        <value name="kp">
+                            <shadow type="math_number">
+                                <field name="NUM">1</field>
+                            </shadow>
+                        </value>
+                        <value name="ki">
+                            <shadow type="math_number">
+                                <field name="NUM">0</field>
+                            </shadow>
+                        </value>
+                        <value name="kd">
+                            <shadow type="math_number">
+                                <field name="NUM">0</field>
                             </shadow>
                         </value>
                     </block>`

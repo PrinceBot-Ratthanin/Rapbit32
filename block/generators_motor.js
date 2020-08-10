@@ -146,4 +146,17 @@ Blockly.JavaScript['Run_following_of_line'] = function(block) {
   code += 'Run_following_of_line( ' + value_speed + ');\n';
   return code;
 };
+Blockly.JavaScript['Readline_PID'] = function(block) {  
+  var code = '(readline())';
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+Blockly.JavaScript['Rapbit32_Run_PID'] = function(block) {
+  var value_speed1 = Blockly.JavaScript.valueToCode(block, 'speed_motor', Blockly.JavaScript.ORDER_ATOMIC) || '0';
+  var value_kp = Blockly.JavaScript.valueToCode(block, 'kp', Blockly.JavaScript.ORDER_ATOMIC) || '0';
+  var value_ki = Blockly.JavaScript.valueToCode(block, 'ki', Blockly.JavaScript.ORDER_ATOMIC) || '0';
+  var value_kd = Blockly.JavaScript.valueToCode(block, 'kd', Blockly.JavaScript.ORDER_ATOMIC) || '0';
+  var code = '';
+  code += 'Run_PID('+ value_speed1 +','+ value_kp +', ' + value_ki + ','+ value_kd +');\n';
+  return code;
+};
 }
