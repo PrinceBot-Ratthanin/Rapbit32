@@ -1,37 +1,4 @@
 
-void motor(int pin, int Speeds) {
-  int _SpeedsA;
-  int _SpeedsB;
-  if (pin == 1) {
-    _SpeedsA = abs(Speeds);
-    _SpeedsA = _SpeedsA * 2.55;
-    if (_SpeedsA > 255)_SpeedsA = 255;
-    else if (_SpeedsA < -255)_SpeedsA = -255;
-    if (Speeds > 0) {
-      ledcWrite(3, abs(_SpeedsA));
-      ledcWrite(2, 0);
-    }
-    else if (Speeds <= 0) {
-      ledcWrite(3, 0);
-      ledcWrite(2, abs(_SpeedsA));
-    }
-  }
-  else if (pin == 2) {
-    _SpeedsB = abs(Speeds);
-    
-    _SpeedsB = _SpeedsB * 2.55;
-    if (_SpeedsB > 255)_SpeedsB = 255;
-    else if (_SpeedsB < -255)_SpeedsB = -255;
-    if (Speeds > 0) {
-      ledcWrite(5, abs(_SpeedsB));
-      ledcWrite(4, 0);
-    }
-    else if (Speeds <= 0) {
-      ledcWrite(5, 0);
-      ledcWrite(4, abs(_SpeedsB));
-    }
-  }
-}
 
 
 void motor(int pin,int _direction, int _Speeds) {
@@ -64,6 +31,25 @@ void motor(int pin,int _direction, int _Speeds) {
     else if (_direction == 2) {
       ledcWrite(4, 255);
       ledcWrite(5, 255 - abs(_SpeedsB));
+    }
+  }
+}
+
+void motor(int pin, int Speeds) {
+  if(pin == 1){
+    if(Speeds > 0){
+      motor(1,1,Speeds);
+    }
+    else{
+      motor(1,2,Speeds);
+    }
+  }
+  if(pin == 2){
+    if(Speeds > 0){
+      motor(2,1,Speeds);
+    }
+    else{
+      motor(2,2,Speeds);
     }
   }
 }

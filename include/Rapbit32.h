@@ -1,9 +1,5 @@
 
 #include <Arduino.h>
-#include <WiFi.h>
-#include <WiFiClient.h>
-#include <WiFiAP.h>
-#include <WebServer.h>
 #include <Wire.h>  
 #include <SPI.h>
 #include "SSD1306Wire.h"
@@ -13,6 +9,8 @@
 #include "Rapbit32_IO.h"
 #include "Adafruit_NeoPixel.h"
 #include "irremote/IRremote.h"
+//#include "BluetoothSerial.h"
+//BluetoothSerial SerialBT;
 
 
 SSD1306Wire display(0x3c, 21, 22);
@@ -21,11 +19,22 @@ Adafruit_NeoPixel pixels(4, 13, NEO_GRB + NEO_KHZ800);
 IRrecv irrecv(14);
 decode_results results;
 
+uint16_t sensor_pin[] = {33, 35, 39}; // พอตเซ็นเซอร์ที่ใช้งาน
+uint16_t min_sensor_values[] = {100, 100, 100}; //ค่าที่อ่านได้น้อยสุดหรือ สีดำ
+uint16_t max_sensor_values[] = {1000, 1000, 1000} ; //ค่าที่อ่านได้มากสุด สีขาว
+
+uint16_t state_on_Line = 0;
+uint32_t _lastPosition;
+float Kp = 1;
+float Ki = 0;
+float Kd = 0;
+
 #define M1A 17
 #define M1B 16
 #define M2A 18
 #define M2B 5
 #define _sw 23
+
 int sw1(){
   pinMode(_sw,INPUT);
   return digitalRead(_sw);
@@ -53,6 +62,8 @@ void clear_pixel(int16_t x, int16_t y)
 }
 void Rapbit32(){
   Serial.begin(115200);
+ // SerialBT.begin("Rapbit32");
+  Serial.println("Runing ");
   pinMode(23,INPUT);
   pinMode(25,OUTPUT);
   pinMode(19,OUTPUT);
@@ -142,14 +153,19 @@ float ultrasonic(){
   int TRIG = 26;
   pinMode(ECHO,INPUT);
   pinMode(TRIG,OUTPUT);
-  digitalWrite(TRIG, LOW);
-  delayMicroseconds(2);
-  digitalWrite(TRIG, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(TRIG, LOW);
-  long duration = pulseIn(ECHO, HIGH);
+  long duration = 0;
+  for(int round_ultra = 0;round_ultra < 3;round_ultra++ ){
+  	digitalWrite(TRIG, LOW);
+	delayMicroseconds(2);
+	digitalWrite(TRIG, HIGH);
+	delayMicroseconds(10);
+	digitalWrite(TRIG, LOW);
+	duration += pulseIn(ECHO, HIGH);
+	delay(2);
+  }
+
   // Calculating the distance
-  return duration*0.034/2;
+  return (duration/3)*0.034/2;
 }
 
 void Rapbit32_setBrightness(uint8_t num){
@@ -204,4 +220,56 @@ long irremote_sensor(){
   }
   delay(100);
   return d;
+}
+int readline()   
+{                
+  
+  bool onLine = false;
+  long avg = 0;
+  long sum = 0;
+  for (uint8_t i = 0; i < 3 ; i++) 
+  {
+    long value = map(analogRead(sensor_pin[i]), min_sensor_values[i], max_sensor_values[i], 100, 0);    
+    if (value > 20) { 
+    	onLine = true;
+    }
+    if (value > 5){
+      avg += (long)value * (i * 100);
+      sum += value;
+    }
+  }
+  if (!onLine)
+  {
+    if (_lastPosition < 100){
+      return 0;
+    }
+    else{
+      return 200;
+    }
+  }
+  _lastPosition = avg / sum;
+  return _lastPosition;
+}
+void Run_PID(int speed_motor,float kp,float ki,float kd){
+  uint16_t setpoint;
+  float present_position;
+  float errors = 0;
+  float output = 0;
+  float integral ;
+  float derivative ;
+  float previous_error ;
+    int speed_max = speed_motor;
+    present_position = readline() ;
+    setpoint = 100.0;
+    errors = setpoint - present_position;
+    integral = integral + errors ;
+    derivative = (errors - previous_error) ;
+    output = kp * errors + ki * integral + kd * derivative;
+    int max_output = 100;
+    if (output > max_output )output = max_output;
+    else if (output < -max_output)output = -max_output;
+    motor(1,speed_max - output);
+    motor(2,speed_max + output);
+    delay(1);
+    previous_error = errors;
 }
