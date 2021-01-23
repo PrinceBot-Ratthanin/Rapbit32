@@ -2,13 +2,18 @@
 #include <Arduino.h>
 #include <Wire.h>  
 #include <SPI.h>
+#include <WiFi.h>
+#include <WiFiClient.h>
+#include <WiFiAP.h>
+#include <WebServer.h>
 #include "SSD1306Wire.h"
 #include "SH1106.h"
 #include "Rapbit32_Motor_drive.h"
 #include "Rapbit32_Servo_lib.h"
 #include "Rapbit32_IO.h"
 #include "Adafruit_NeoPixel.h"
-#include "irremote/IRremote.h"
+
+//#include "irremote/IRremote.h"
 //#include "BluetoothSerial.h"
 //BluetoothSerial SerialBT;
 
@@ -16,8 +21,8 @@
 SSD1306Wire display(0x3c, 21, 22);
 Adafruit_NeoPixel pixels(4, 13, NEO_GRB + NEO_KHZ800);
 
-IRrecv irrecv(14);
-decode_results results;
+//IRrecv irrecv(14);
+//decode_results results;
 
 uint16_t sensor_pin[] = {33, 35, 39}; // พอตเซ็นเซอร์ที่ใช้งาน
 uint16_t min_sensor_values[] = {100, 100, 100}; //ค่าที่อ่านได้น้อยสุดหรือ สีดำ
@@ -62,7 +67,8 @@ void clear_pixel(int16_t x, int16_t y)
 }
 void Rapbit32(){
   Serial.begin(115200);
- // SerialBT.begin("Rapbit32");
+  //SerialBT.begin(115200);
+ //SerialBT.begin("Rapbit32");
   Serial.println("Runing ");
   pinMode(23,INPUT);
   pinMode(25,OUTPUT);
@@ -80,7 +86,7 @@ void Rapbit32(){
   pixels.setBrightness(50);
   //pixels.setPixelColor(0, pixels.Color(100, 0, 0));
   pixels.show();
-  irrecv.enableIRIn();
+  //irrecv.enableIRIn();
   pinMode(M1A,OUTPUT);
   pinMode(M1B,OUTPUT);
   pinMode(M2A,OUTPUT);
@@ -212,7 +218,7 @@ void Rapbit32_rainbow(int wait) {
     delay(wait);
   }
 }
-long irremote_sensor(){
+/*long irremote_sensor(){
   long d = 0;
   if (irrecv.decode(&results)) {
      d = results.value;
@@ -220,7 +226,7 @@ long irremote_sensor(){
   }
   delay(100);
   return d;
-}
+}*/
 int readline()   
 {                
   
