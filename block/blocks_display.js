@@ -59,8 +59,8 @@ module.exports = function(Blockly){
                   image = image.resize({width : 128});
                   size = image.getSize();
                 }
-                if(size.height > 32){
-                  image = image.resize({height : 32});
+                if(size.height > 64){
+                  image = image.resize({height : 64});
                   size = image.getSize();
                 }
                 var buff = image.getBitmap();
