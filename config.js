@@ -8,5 +8,5 @@ module.exports = {
   email: "print081@gmail.com",
   git: "https://github.com/PrinceBot-Ratthanin/Rapbit32/",
   image: "/static/Rapbit32.png",
-  version: "1.0.4",
+  version: "1.0.5",
 };

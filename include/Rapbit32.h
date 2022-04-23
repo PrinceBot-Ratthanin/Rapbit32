@@ -33,6 +33,7 @@ uint32_t _lastPosition;
 float Kp = 1;
 float Ki = 0;
 float Kd = 0;
+int current_degree_servo = 90;
 
 #define M1A 17
 #define M1B 16
@@ -255,6 +256,24 @@ int readline()
   }
   _lastPosition = avg / sum;
   return _lastPosition;
+}
+void control_servo(int servo_ch,int servo_degree,int traget_degree,int servo_speed){
+	if(abs(current_degree_servo - traget_degree) > 2){
+		if(servo_degree < traget_degree ){
+			for(int i = servo_degree;i<traget_degree;i++){
+				servo(servo_ch,i);
+				delay(servo_speed);
+				current_degree_servo = i;
+			}
+		}
+		else {
+			for(int i = servo_degree;i>traget_degree;i--){
+				servo(servo_ch,i);
+				delay(servo_speed);
+				current_degree_servo = i;
+			}
+		}
+	}
 }
 void Run_PID(int speed_motor,float kp,float ki,float kd){
   uint16_t setpoint;

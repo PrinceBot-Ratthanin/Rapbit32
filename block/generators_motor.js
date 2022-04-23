@@ -17,6 +17,15 @@ Blockly.JavaScript['Rapbit32_servo'] = function(block) {
   var code = 'servo(' + dropdown_ch + ', ' + value_angle + ');\n';
   return code;
 };
+Blockly.JavaScript['Rapbit32_servo_speed_control'] = function(block) {
+  var dropdown_ch = block.getFieldValue('ch');
+  var dropdown_speed = block.getFieldValue('speed');
+  var value_servo_degree = Blockly.JavaScript.valueToCode(block, 'servo_degree', Blockly.JavaScript.ORDER_ATOMIC) || 0;
+  var value_traget_degree = Blockly.JavaScript.valueToCode(block, 'traget_degree', Blockly.JavaScript.ORDER_ATOMIC) || 0;
+  
+  var code = 'control_servo(' + dropdown_ch + ', ' + value_servo_degree + ', ' + value_traget_degree + ', ' + dropdown_speed + ');\n';
+  return code;
+};
 
 Blockly.JavaScript['Rapbit32_servo2'] = function(block) {
   var dropdown_ch = block.getFieldValue('ch');
@@ -153,10 +162,9 @@ Blockly.JavaScript['Readline_PID'] = function(block) {
 Blockly.JavaScript['Rapbit32_Run_PID'] = function(block) {
   var value_speed1 = Blockly.JavaScript.valueToCode(block, 'speed_motor', Blockly.JavaScript.ORDER_ATOMIC) || '0';
   var value_kp = Blockly.JavaScript.valueToCode(block, 'kp', Blockly.JavaScript.ORDER_ATOMIC) || '0';
-  var value_ki = Blockly.JavaScript.valueToCode(block, 'ki', Blockly.JavaScript.ORDER_ATOMIC) || '0';
   var value_kd = Blockly.JavaScript.valueToCode(block, 'kd', Blockly.JavaScript.ORDER_ATOMIC) || '0';
   var code = '';
-  code += 'Run_PID('+ value_speed1 +','+ value_kp +', ' + value_ki + ','+ value_kd +');\n';
+  code += 'Run_PID('+ value_speed1 +','+ value_kp +','+ value_kd +');\n';
   return code;
 };
 }

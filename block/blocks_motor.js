@@ -39,6 +39,36 @@ Blockly.Blocks['Rapbit32_servo'] = {
     this.setTooltip("");
   }
 };
+Blockly.Blocks['Rapbit32_servo_speed_control'] = {
+  init: function() {
+    this.appendDummyInput()
+      .appendField("set servo")
+      .appendField(new Blockly.FieldDropdown([["1","1"], ["2","2"]]), "ch");
+    this.appendValueInput("servo_degree")
+      .setCheck("Number")
+      .appendField("Degree:");
+    this.appendValueInput("traget_degree")
+      .setCheck("Number")
+      .appendField("To");
+    this.appendDummyInput()
+      .appendField("speed:")
+      .appendField(new Blockly.FieldDropdown([["1","10"],
+                                              ["2","9"],
+                                              ["3","8"],
+                                              ["4","7"],
+                                              ["5","6"],
+                                              ["6","5"],
+                                              ["7","4"],
+                                              ["8","3"],
+                                              ["9","2"],
+                                              ["10","1"]]), "speed");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+    this.setTooltip("");
+  }
+};
 
 Blockly.Blocks['Rapbit32_servo2'] = {
   init: function() {

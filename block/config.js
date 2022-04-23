@@ -23,6 +23,31 @@ module.exports = {
                         </value>
                     </block>`
                 },
+                { 
+                    xml : 
+                    `<block type="Rapbit32_servo_speed_control">
+                        <value name="ch">
+                            <shadow type="math_number">
+                                <field name="NUM">1</field>
+                            </shadow>
+                        </value>
+                        <value name="servo_degree">
+                            <shadow type="math_number">
+                                <field name="NUM">90</field>
+                            </shadow>
+                        </value>
+                        <value name="traget_degree">
+                            <shadow type="math_number">
+                                <field name="NUM">120</field>
+                            </shadow>
+                        </value>
+                        <value name="servo_speed">
+                            <shadow type="math_number">
+                                <field name="NUM">5</field>
+                            </shadow>
+                        </value>
+                    </block>`
+                },
                 //'Rapbit32_motor_stop',
                 {
                     xml : 
