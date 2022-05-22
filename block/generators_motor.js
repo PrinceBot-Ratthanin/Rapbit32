@@ -163,8 +163,9 @@ Blockly.JavaScript['Rapbit32_Run_PID'] = function(block) {
   var value_speed1 = Blockly.JavaScript.valueToCode(block, 'speed_motor', Blockly.JavaScript.ORDER_ATOMIC) || '0';
   var value_kp = Blockly.JavaScript.valueToCode(block, 'kp', Blockly.JavaScript.ORDER_ATOMIC) || '0';
   var value_kd = Blockly.JavaScript.valueToCode(block, 'kd', Blockly.JavaScript.ORDER_ATOMIC) || '0';
+  var value_ki = Blockly.JavaScript.valueToCode(block, 'ki', Blockly.JavaScript.ORDER_ATOMIC) || '0';
   var code = '';
-  code += 'Run_PID('+ value_speed1 +','+ value_kp +','+ value_kd +');\n';
+  code += 'Run_PID('+ value_speed1 +','+ value_kp +','+ value_ki +','+ value_kd +');\n';
   return code;
 };
 }
