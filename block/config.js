@@ -152,6 +152,46 @@ module.exports = {
                 'Readline_PID',
                 { 
                     xml : 
+                    `<block type="Rapbit32_set_min">
+                        <value name="L1">
+                            <shadow type="math_number">
+                                <field name="NUM">200</field>
+                            </shadow>
+                        </value>
+                        <value name="L2">
+                            <shadow type="math_number">
+                                <field name="NUM">200</field>
+                            </shadow>
+                        </value>
+                        <value name="L3">
+                            <shadow type="math_number">
+                                <field name="NUM">200</field>
+                            </shadow>
+                        </value>
+                    </block>`
+                },
+                { 
+                    xml : 
+                    `<block type="Rapbit32_set_max">
+                        <value name="L1">
+                            <shadow type="math_number">
+                                <field name="NUM">1023</field>
+                            </shadow>
+                        </value>
+                        <value name="L2">
+                            <shadow type="math_number">
+                                <field name="NUM">1023</field>
+                            </shadow>
+                        </value>
+                        <value name="L3">
+                            <shadow type="math_number">
+                                <field name="NUM">1023</field>
+                            </shadow>
+                        </value>
+                    </block>`
+                },
+                { 
+                    xml : 
                     `<block type="Rapbit32_Run_PID">
                         <value name="speed_motor">
                             <shadow type="math_number">

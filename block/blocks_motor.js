@@ -318,4 +318,48 @@ Blockly.Blocks['Rapbit32_Run_PID'] = {
     this.setTooltip("");
   }
 };
+
+Blockly.Blocks['Rapbit32_set_min'] = {
+  init: function() {
+    
+    this.appendDummyInput()
+      .appendField("ตั้งค่าแสงน้อยสุด Set min value sensor");
+    this.appendValueInput("L1")
+      .setCheck("Number")
+      .appendField("L1:");
+    this.appendValueInput("L2")
+      .setCheck("Number")
+      .appendField("L2:");
+    this.appendValueInput("L3")
+      .setCheck("Number")
+      .appendField("L3:");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(180);
+    this.setTooltip("");
+  }
+};
+
+Blockly.Blocks['Rapbit32_set_max'] = {
+  init: function() {
+    
+    this.appendDummyInput()
+      .appendField("ตั้งค่าแสงมากสุด Set max value sensor");
+    this.appendValueInput("L1")
+      .setCheck("Number")
+      .appendField("L1:");
+    this.appendValueInput("L2")
+      .setCheck("Number")
+      .appendField("L2:");
+    this.appendValueInput("L3")
+      .setCheck("Number")
+      .appendField("L3:");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(180);
+    this.setTooltip("");
+  }
+};
 }

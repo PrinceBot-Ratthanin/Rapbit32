@@ -168,4 +168,25 @@ Blockly.JavaScript['Rapbit32_Run_PID'] = function(block) {
   code += 'Run_PID('+ value_speed1 +','+ value_kp +','+ value_ki +','+ value_kd +');\n';
   return code;
 };
+
+Blockly.JavaScript['Rapbit32_set_min'] = function(block) {
+  var value_L1 = Blockly.JavaScript.valueToCode(block, 'L1', Blockly.JavaScript.ORDER_ATOMIC) || '0';
+  var value_L2 = Blockly.JavaScript.valueToCode(block, 'L2', Blockly.JavaScript.ORDER_ATOMIC) || '0';
+  var value_L3 = Blockly.JavaScript.valueToCode(block, 'L3', Blockly.JavaScript.ORDER_ATOMIC) || '0';
+  var code = '';
+  code += 'min_sensor_values[0] ='+ value_L1 +';\n';
+  code += 'min_sensor_values[1] ='+ value_L2 +';\n';
+  code += 'min_sensor_values[2] ='+ value_L3 +';\n';
+  return code;
+};
+Blockly.JavaScript['Rapbit32_set_max'] = function(block) {
+  var value_L1 = Blockly.JavaScript.valueToCode(block, 'L1', Blockly.JavaScript.ORDER_ATOMIC) || '0';
+  var value_L2 = Blockly.JavaScript.valueToCode(block, 'L2', Blockly.JavaScript.ORDER_ATOMIC) || '0';
+  var value_L3 = Blockly.JavaScript.valueToCode(block, 'L3', Blockly.JavaScript.ORDER_ATOMIC) || '0';
+  var code = '';
+  code += 'max_sensor_values[0] ='+ value_L1 +';\n';
+  code += 'max_sensor_values[1] ='+ value_L2 +';\n';
+  code += 'max_sensor_values[2] ='+ value_L3 +';\n';
+  return code;
+};
 }
